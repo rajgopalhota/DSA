@@ -1,0 +1,18 @@
+class Solution {
+public: 
+    int smallestValue(int n) {
+        if(n==4)return 4;
+        int c=0;
+        int i=2;
+        int sum=0;
+        while(n>1){
+            if(n%i==0){
+                sum+=i;c++;
+                n/=i;continue;
+            }
+            i++;
+        }
+        if(c==1)return sum;
+        return smallestValue(sum);
+    }
+};
