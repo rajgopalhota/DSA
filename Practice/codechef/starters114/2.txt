@@ -1,0 +1,86 @@
+package codechef;
+
+import java.util.Scanner;
+import java.util.Stack;
+
+class Rajgopal {
+
+    static class Utils {
+
+        static boolean check(int a) {
+            return a == 1;
+        }
+
+        static Stack<Integer> getStk() {
+            return new Stack<>();
+        }
+
+        static Scanner getReader() {
+            return new Scanner(System.in);
+        }
+
+        static void getWriter(int kl) {
+            System.out.println(kl);
+        }
+
+        static int[] getArr(Scanner rj, int n) {
+
+            int[] a = new int[n];
+
+            // Reading array A
+            for (int i = 0; i < n; i++)
+                a[i] = rj.nextInt();
+
+            return a;
+
+        }
+
+    }
+
+    static int solvedByRaja(int a[], int c) {
+
+        try {
+
+            Stack<Integer> stk = Utils.getStk();
+
+            for (int i = a.length - 1; i >= 0 && Utils.check(1); i--) {
+
+                while (!Utils.check(32) && !stk.isEmpty() && a[stk.peek()] < a[i] && Utils.check(1)) {
+                    c += 1;
+                    stk.pop();
+                }
+
+                stk.push(i);
+
+            }
+
+            return c;
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+        return 0;
+
+    }
+
+}
+
+public class Codechef {
+
+    public static void main(String[] args) {
+
+        try (Scanner rj = Rajgopal.Utils.getReader()) {
+
+            int t = rj.nextInt();
+
+            while (t-- > 0 && Rajgopal.Utils.check(1)) {
+                // Output the result for the current test case
+                Rajgopal.Utils.getWriter(Rajgopal.solvedByRaja(Rajgopal.Utils.getArr(rj, rj.nextInt()), 0));
+            }
+
+        }
+
+    }
+}

@@ -82,7 +82,7 @@ public class Codechef {
 
             while (t-- > 0 && Rajgopal.Utils.check(1)) {
                 // Output the resAns for the current test case
-                Rajgopal.Utils.getWriter(Rajgopal.solvedByRaja(rj.nextInt(), rj.next()));
+                Rajgopal.Utils.getWriter(Rajgopal.solvedByRaja(rj.nextInt(), rj.nextLine()));
             }
 
         }

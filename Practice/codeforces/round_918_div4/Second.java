@@ -1,10 +1,5 @@
-package codechef;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.Scanner;
-import java.util.Stack;
+package codeforces.round_918_div4;
+import java.util.*;
 
 class Rajgopal {
 
@@ -70,26 +65,6 @@ class Rajgopal {
 
 }
 
-public class Codechef {
-
-    public static void main(String[] args) throws Exception {
-
-        Scanner rj = new Scanner(System.in);
-
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
-
-            int t = Integer.parseInt(rj.next());
-
-            while (t-- > 0 && Rajgopal.Utils.check(1)) {
-                // Output the resAns for the current test case
-                Rajgopal.Utils.getWriter(Rajgopal.solvedByRaja(rj.nextInt(), rj.next()));
-            }
-
-        }
-
-        finally {
-            rj.close();
-        }
-
-    }
+public class Second {
+    
 }
