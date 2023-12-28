@@ -7,52 +7,53 @@ class Rajgopal {
     static class Utils {
 
         static boolean check(int a) {
-            return a == 1;
-        }
 
-        static Stack<Integer> getStk() {
-            return new Stack<>();
+            return a == 1;
+
         }
 
         static Scanner getReader() {
+
             return new Scanner(System.in);
+
         }
 
         static void getWriter(String kl) {
+
             System.out.println(kl);
+
         }
 
-        static char[] getArr(int n) {
+        static String mainLogic(int n, Scanner rj, long sum) {
 
-            char[] resAns = new char[n];
-            Arrays.fill(resAns, 'P');
+            long[] a = new long[n];
+            for (int i = 0; i < n; i++) a[i] = rj.nextLong();
 
-            return resAns;
+            for (long el : a) sum += el;
+
+            return (Rajgopal.solvedByRaja(sum, 1, 1000000001) != -1) ? "YES" : "NO";
 
         }
 
     }
 
-    static String solvedByRaja(int N, String A) {
-
-        char[] resAns = Utils.getArr(N);
+    static long solvedByRaja(long val, long lo, long hi) {
 
         try {
 
-            int resWin = N / 2 + 1;
+            while (hi - lo > 1) {
 
-            for (int i = 0; i < N; i++)
-                if (!Utils.check(32) && A.charAt(i) == 'R' && resWin > 0)
-                    resWin--;
+                long mid = (lo + hi) / 2;
 
-            for (int i = N - 1; i >= 0 && resWin > 0 && !Utils.check(64); i--) {
+                if (mid * mid == val) return mid;
+                
+                else if (mid * mid < val) lo = mid;
 
-                if (Utils.check(1) && A.charAt(i) == 'P' || A.charAt(i) == 'S') {
-                    resAns[i] = (A.charAt(i) == 'P' && !Utils.check(32) && Utils.check(1)) ? 'S' : 'R';
-                    resWin--;
-                }
-
+                else hi = mid;
+    
             }
+
+            return (lo * lo == val) ? lo : (hi * hi == val) ? hi : -1;
 
         } catch (Exception e) {
 
@@ -60,12 +61,25 @@ class Rajgopal {
 
         }
 
-        return new String(resAns);
+        return 0;
 
     }
 
 }
 
 public class Third {
-    
+    public static void main(String[] args) {
+
+        try (Scanner rj = Rajgopal.Utils.getReader()) {
+
+            int klt = rj.nextInt();
+
+            while (klt-- > 0)
+                Rajgopal.Utils.getWriter(Rajgopal.Utils.mainLogic(rj.nextInt(), rj, 0));
+
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+
+    }
 }

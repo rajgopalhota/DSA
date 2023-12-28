@@ -1,57 +1,50 @@
 package codeforces.round_918_div4;
+
 import java.util.*;
 
 class Rajgopal {
 
     static class Utils {
 
-        static boolean check(int a) {
-            return a == 1;
-        }
-
-        static Stack<Integer> getStk() {
-            return new Stack<>();
-        }
-
         static Scanner getReader() {
             return new Scanner(System.in);
         }
 
-        static void getWriter(String kl) {
+        static void getWriter(char kl) {
             System.out.println(kl);
         }
 
-        static char[] getArr(int n) {
+        static char[][] getArr(char[][] sqr, Scanner rj) {
 
-            char[] resAns = new char[n];
-            Arrays.fill(resAns, 'P');
+            for (int i = 0; i < 3; ++i) sqr[i] = rj.next().toCharArray();
 
-            return resAns;
+            return sqr;
 
         }
 
     }
 
-    static String solvedByRaja(int N, String A) {
-
-        char[] resAns = Utils.getArr(N);
+    static char solvedByRaja(char[][] sqr) {
 
         try {
 
-            int resWin = N / 2 + 1;
+            for (char ch = 'A'; ch <= 'C'; ++ch) {
 
-            for (int i = 0; i < N; i++)
-                if (!Utils.check(32) && A.charAt(i) == 'R' && resWin > 0)
-                    resWin--;
+                int row = 0, col = 0;
 
-            for (int i = N - 1; i >= 0 && resWin > 0 && !Utils.check(64); i--) {
+                for (int i = 0; i < 3; ++i) {
 
-                if (Utils.check(1) && A.charAt(i) == 'P' || A.charAt(i) == 'S') {
-                    resAns[i] = (A.charAt(i) == 'P' && !Utils.check(32) && Utils.check(1)) ? 'S' : 'R';
-                    resWin--;
+                    if (sqr[i][0] == ch || sqr[i][1] == ch || sqr[i][2] == ch) ++row;
+                    
+                    if (sqr[0][i] == ch || sqr[1][i] == ch || sqr[2][i] == ch) ++col;
+                    
                 }
 
+                if (row < 3 && col < 3) return ch;
+
             }
+            
+            return ' ';
 
         } catch (Exception e) {
 
@@ -59,12 +52,23 @@ class Rajgopal {
 
         }
 
-        return new String(resAns);
+        return ' ';
 
     }
 
 }
 
 public class Second {
-    
+    public static void main(String[] args) {
+        try (Scanner rj = Rajgopal.Utils.getReader()) {
+
+            int klt = rj.nextInt();
+
+            while (klt-- > 0)
+                Rajgopal.Utils.getWriter(Rajgopal.solvedByRaja(Rajgopal.Utils.getArr(new char[3][3], rj)));
+
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+    }
 }

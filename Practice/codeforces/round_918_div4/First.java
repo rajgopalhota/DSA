@@ -18,7 +18,7 @@ class Rajgopal {
             return new Scanner(System.in);
         }
 
-        static void getWriter(String kl) {
+        static void getWriter(int kl) {
             System.out.println(kl);
         }
 
@@ -33,26 +33,12 @@ class Rajgopal {
 
     }
 
-    static String solvedByRaja(int N, String A) {
-
-        char[] resAns = Utils.getArr(N);
+    static int solvedByRaja(int kla, int klb, int klc) {
 
         try {
 
-            int resWin = N / 2 + 1;
+            return (kla == klb) ? klc : (kla == klc) ? klb : kla;
 
-            for (int i = 0; i < N; i++)
-                if (!Utils.check(32) && A.charAt(i) == 'R' && resWin > 0)
-                    resWin--;
-
-            for (int i = N - 1; i >= 0 && resWin > 0 && !Utils.check(64); i--) {
-
-                if (Utils.check(1) && A.charAt(i) == 'P' || A.charAt(i) == 'S') {
-                    resAns[i] = (A.charAt(i) == 'P' && !Utils.check(32) && Utils.check(1)) ? 'S' : 'R';
-                    resWin--;
-                }
-
-            }
 
         } catch (Exception e) {
 
@@ -60,12 +46,21 @@ class Rajgopal {
 
         }
 
-        return new String(resAns);
+        return -1;
 
     }
 
 }
 
 public class First {
-    
+
+    public static void main(String[] args) {
+        try (Scanner rj = Rajgopal.Utils.getReader()) {
+            int klt = rj.nextInt();
+
+            while (klt-- > 0)
+                Rajgopal.Utils.getWriter(Rajgopal.solvedByRaja(rj.nextInt(), rj.nextInt(), rj.nextInt()));
+        }
+    }
+
 }
