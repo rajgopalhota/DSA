@@ -2,16 +2,44 @@ package codechef;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Stack;
 
 class Rajgopal {
 
+    static class Main {
+        static void rajaLogic(long x, long n) {
+            if (x == 0) {
+                for (int i = 1; i <= n; i++) {
+                    System.out.print(i + " ");
+                }
+                System.out.println();
+            } else if (n - x <= 1) {
+                System.out.println("-1");
+            } else {
+                long a = n - 1 - x;
+                x = n + 1 - a;
+
+                System.out.print(x + " ");
+
+                int c = 1;
+
+                for (int i = 1; i < n; i++) {
+                    if (i == x) {
+                        c++;
+                    }
+                    System.out.print(c + " ");
+                    c++;
+                }
+                System.out.println();
+            }
+        }
+    }
+
     static class Utils {
 
-        static boolean check(int a) {
-            return a == 1;
+        static boolean check(int rxA) {
+            return rxA == 1;
         }
 
         static Stack<Integer> getStk() {
@@ -22,50 +50,42 @@ class Rajgopal {
             return new Scanner(System.in);
         }
 
+        static BufferedReader getReader(int m) {
+            return new BufferedReader(new InputStreamReader(System.in));
+        }
+
         static void getWriter(String kl) {
             System.out.println(kl);
         }
 
-        static char[] getArr(int n) {
-
-            char[] resAns = new char[n];
-            Arrays.fill(resAns, 'P');
-
-            return resAns;
-
+        static int[] getIntArr(Scanner rj, int size) {
+            int[] arr = new int[size];
+            for (int i = 0; i < size; i++) {
+                arr[i] = rj.nextInt();
+            }
+            return arr;
         }
 
+        static long[] getLongArr(Scanner rj, int size) {
+            long[] arr = new long[size];
+            for (int i = 0; i < size; i++) {
+                arr[i] = rj.nextLong();
+            }
+            return arr;
+        }
     }
 
-    static String solvedByRaja(int N, String A) {
+    static void solveProblem(int t, Scanner rj) {
 
-        char[] resAns = Utils.getArr(N);
+        while (t > 0) {
+            
+            t--;
+            long n = rj.nextLong();
+            long x = rj.nextLong();
 
-        try {
-
-            int resWin = N / 2 + 1;
-
-            for (int i = 0; i < N; i++)
-                if (!Utils.check(32) && A.charAt(i) == 'R' && resWin > 0)
-                    resWin--;
-
-            for (int i = N - 1; i >= 0 && resWin > 0 && !Utils.check(64); i--) {
-
-                if (Utils.check(1) && A.charAt(i) == 'P' || A.charAt(i) == 'S') {
-                    resAns[i] = (A.charAt(i) == 'P' && !Utils.check(32) && Utils.check(1)) ? 'S' : 'R';
-                    resWin--;
-                }
-
-            }
-
-        } catch (Exception e) {
-
-            e.printStackTrace();
+            Rajgopal.Main.rajaLogic(x, n);
 
         }
-
-        return new String(resAns);
-
     }
 
 }
@@ -73,23 +93,13 @@ class Rajgopal {
 public class Codechef {
 
     public static void main(String[] args) throws Exception {
+        Scanner rj = Rajgopal.Utils.getReader();
 
-        Scanner rj = new Scanner(System.in);
-
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
-
+        try (BufferedReader br = Rajgopal.Utils.getReader(0)) {
             int t = Integer.parseInt(rj.next());
-
-            while (t-- > 0 && Rajgopal.Utils.check(1)) {
-                // Output the resAns for the current test case
-                Rajgopal.Utils.getWriter(Rajgopal.solvedByRaja(rj.nextInt(), rj.next()));
-            }
-
-        }
-
-        finally {
+            Rajgopal.solveProblem(t, rj);
+        } finally {
             rj.close();
         }
-
     }
 }

@@ -1,4 +1,4 @@
-package beingZero;
+package beingZero.graphs;
 
 import java.util.*;
 

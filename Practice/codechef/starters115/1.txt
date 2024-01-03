@@ -1,0 +1,88 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.Scanner;
+import java.util.Stack;
+
+class Rajgopal {
+
+    static class Utils {
+
+        static boolean check(int a) {
+            return a == 1;
+        }
+
+        static Stack<Integer> getStk() {
+            return new Stack<>();
+        }
+
+        static Scanner getReader() {
+            return new Scanner(System.in);
+        }
+
+        static BufferedReader getReader(int m) {
+            return new BufferedReader(new InputStreamReader(System.in));
+        }
+
+        static void getWriter(int kl[]) {
+            System.out.println(kl[0]+" "+kl[1]);
+        }
+
+        static char[] getArr(int n) {
+
+            char[] resAns = new char[n];
+            Arrays.fill(resAns, 'P');
+
+            return resAns;
+
+        }
+
+    }
+
+    static int[] solvedByRaja(int N) {
+        
+        int[] res = new int[2];
+
+        try {
+
+            res[0] = (N % 2 == 0) ? (N / 2) : ((N + 1) / 2);
+            res[1] = N;
+            
+            return res;
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+
+        return new int[2];
+
+    }
+
+}
+
+class Codechef {
+
+    public static void main(String[] args) throws Exception {
+
+        Scanner rj = Rajgopal.Utils.getReader();
+
+        try (BufferedReader br = Rajgopal.Utils.getReader(0)) {
+
+            int t = Integer.parseInt(rj.next());
+
+            while (t-- > 0 && Rajgopal.Utils.check(1)) {
+                // Output the resAns for the current test case
+                Rajgopal.Utils.getWriter(Rajgopal.solvedByRaja(rj.nextInt()));
+            }
+
+        }
+
+        finally {
+            rj.close();
+        }
+
+    }
+}
+
