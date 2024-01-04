@@ -1,4 +1,4 @@
-package beingZero.graphs;
+package beingZero.phase_three.graphs;
 
 import java.util.Scanner;
 

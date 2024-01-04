@@ -1,8 +1,10 @@
-package beingZero.graphs;
+package beingZero.phase_three.graphs;
 
 import java.util.*;
 
-public class AdjBFSList {
+// The distance array will contains distances from the given source to all the vetices. if unreachable then its -1
+
+public class DistancesFromSinglePoint {
     public static void main(String args[]) {
 
         try (Scanner sc = new Scanner(System.in)) {
@@ -18,15 +20,18 @@ public class AdjBFSList {
                 g.get(u).add(v);
                 g.get(v).add(u);
             }
-            bfs(g, 0);
+            int[] dist = new int[nv];
+            Arrays.fill(dist, -1);
+            bfs(g, 0, dist);
         }
     }
 
-    public static void bfs(Map<Integer, List<Integer>> g, int source) {
+    public static void bfs(Map<Integer, List<Integer>> g, int source, int[] dist) {
         Queue<Integer> queue = new LinkedList<>();
         Set<Integer> vis = new HashSet<>();
         queue.add(source);
         vis.add(source);
+        dist[source] = 0;
         while (!queue.isEmpty()) {
             int u = queue.poll();
             System.out.print(u + " ");
@@ -34,6 +39,7 @@ public class AdjBFSList {
                 if (!vis.contains(i)) {
                     queue.add(i);
                     vis.add(i);
+                    dist[i] = 1 + dist[u];
                 }
             }
 
