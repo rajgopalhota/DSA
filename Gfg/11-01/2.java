@@ -1,4 +1,8 @@
 import java.util.*;
+class Node{
+    Node right, left;
+    int data;
+}
 
 class Solution {
 
