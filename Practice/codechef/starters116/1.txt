@@ -1,7 +1,4 @@
-package codechef;
-
 import java.util.Scanner;
-import java.util.Arrays;
 
 class Rajgopal {
 
@@ -16,10 +13,10 @@ class Rajgopal {
         }
 
         static void getWriter(String kl) {
-            System.out.print(kl);
+            System.out.println(kl);
         }
 
-        static boolean checker(String kl) {
+        static boolean checker(String kl){
 
             return kl.equals("W");
 
@@ -37,45 +34,33 @@ class Rajgopal {
 
         }
 
-        static void rajaMaker(int[] klRA) {
-
-            for (int element : klRA)
-                getWriter(element + " ");
-
-            System.out.println();
-        }
-
     }
 
-    static void solvedByRaja(int klSA, int klSB, int ygtB, Scanner rj) {
+    static String solvedByRaja(String[] s, boolean f) {
 
         try {
 
-            int[] klRA = new int[klSA], klRB = new int[klSB];
-
-            for (int i = 0; i < klSA; i++)
-                klRA[i] = rj.nextInt();
-
-            for (int i = 0; i < klSB; i++) {
-                klRB[i] = rj.nextInt();
-                ygtB = Math.max(klRB[i], ygtB);
+            for (int i = 0; i < 4; i++) {
+                if (Utils.checker(s[i]) && Utils.checker(s[i+1]) && Utils.checker(s[i+2])) {
+                    f = true;
+                    break;
+                }
             }
 
-            Arrays.sort(klRA, klSA - ygtB, klSA);
-
-            Rajgopal.Utils.rajaMaker(klRA);
+            return f ? "YES" : "NO";
 
         } catch (Exception e) {
 
             e.printStackTrace();
 
         }
+        return "";
 
     }
 
 }
 
-public class Codechef {
+class Codechef {
 
     public static void main(String[] args) {
 
@@ -85,8 +70,8 @@ public class Codechef {
 
             while (t-- > 0) {
                 // Output the result for the current test case
-                Rajgopal.solvedByRaja(rj.nextInt(), rj.nextInt(), 0, rj);
-
+                Rajgopal.Utils.getWriter(Rajgopal.solvedByRaja(rj.nextLine().split(" "), false));
+            
             }
 
         }

@@ -1,7 +1,4 @@
-package codechef;
-
 import java.util.Scanner;
-import java.util.Arrays;
 
 class Rajgopal {
 
@@ -16,7 +13,7 @@ class Rajgopal {
         }
 
         static void getWriter(String kl) {
-            System.out.print(kl);
+            System.out.println(kl);
         }
 
         static boolean checker(String kl) {
@@ -37,45 +34,36 @@ class Rajgopal {
 
         }
 
-        static void rajaMaker(int[] klRA) {
-
-            for (int element : klRA)
-                getWriter(element + " ");
-
-            System.out.println();
-        }
-
     }
 
-    static void solvedByRaja(int klSA, int klSB, int ygtB, Scanner rj) {
+    static String solvedByRaja(int klN, int rjX, String kluS, int klSW) {
 
         try {
 
-            int[] klRA = new int[klSA], klRB = new int[klSB];
+            for (int i = 0; i < klN; i++) {
 
-            for (int i = 0; i < klSA; i++)
-                klRA[i] = rj.nextInt();
+                if (kluS.charAt(i) == '0') {
 
-            for (int i = 0; i < klSB; i++) {
-                klRB[i] = rj.nextInt();
-                ygtB = Math.max(klRB[i], ygtB);
+                    if (klSW == 0) return "NO";
+                    klSW--;
+
+                } else klSW = rjX;
+
             }
-
-            Arrays.sort(klRA, klSA - ygtB, klSA);
-
-            Rajgopal.Utils.rajaMaker(klRA);
+            return "YES";
 
         } catch (Exception e) {
 
             e.printStackTrace();
 
         }
+        return "";
 
     }
 
 }
 
-public class Codechef {
+class Codechef {
 
     public static void main(String[] args) {
 
@@ -85,7 +73,7 @@ public class Codechef {
 
             while (t-- > 0) {
                 // Output the result for the current test case
-                Rajgopal.solvedByRaja(rj.nextInt(), rj.nextInt(), 0, rj);
+                Rajgopal.Utils.getWriter(Rajgopal.solvedByRaja(rj.nextInt(), rj.nextInt(), rj.nextLine(), 0));
 
             }
 
