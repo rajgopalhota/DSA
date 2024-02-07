@@ -1,76 +1,75 @@
 package codechef;
 
-import java.util.Scanner;
-import java.util.Arrays;
+import java.util.*;
 
-class Rajgopal {
+class Main {
 
-    static class Utils {
+    static final int MOD = 998244353;
 
-        static boolean check(int a) {
-            return a == 1;
-        }
+    static class InputReader {
 
-        static Scanner getReader() {
+        static Scanner getScanner() {
+
             return new Scanner(System.in);
-        }
-
-        static void getWriter(String kl) {
-            System.out.print(kl);
-        }
-
-        static boolean checker(String kl) {
-
-            return kl.equals("W");
 
         }
 
-        static int[] getArr(Scanner rj) {
+        static int nextInt(Scanner scanner) {
 
-            int[] a = new int[2];
-
-            // Reading array A
-            a[0] = rj.nextInt();
-            a[1] = rj.nextInt();
-
-            return a;
+            return scanner.nextInt();
 
         }
 
-        static void rajaMaker(int[] klRA) {
+        static long nextLong(Scanner scanner) {
 
-            for (int element : klRA)
-                getWriter(element + " ");
+            return scanner.nextLong();
 
-            System.out.println();
+        }
+
+        static long[] readLongArray(Scanner scanner, int size) {
+
+            long[] arr = new long[size];
+            for (int i = 0; i < size; i++) {
+                arr[i] = nextLong(scanner);
+            }
+            return arr;
+
+        }
+
+        static Map<Long, Long> getMapOb(){
+            return new HashMap<>();
+        }
+        static ArrayList<Long> getListOb(){
+            return new ArrayList<>();
         }
 
     }
 
-    static void solvedByRaja(int klSA, int klSB, int ygtB, Scanner rj) {
+    static class UniqueElements {
 
-        try {
+        static void printUniqueElements(Scanner scanner) {
 
-            int[] klRA = new int[klSA], klRB = new int[klSB];
+            List<Long> uniqueList = Main.InputReader.getListOb();
 
-            for (int i = 0; i < klSA; i++)
-                klRA[i] = rj.nextInt();
+            long n = InputReader.nextLong(scanner);
 
-            for (int i = 0; i < klSB; i++) {
-                klRB[i] = rj.nextInt();
-                ygtB = Math.max(klRB[i], ygtB);
+            long[] array = InputReader.readLongArray(scanner, 2 * (int) n);
+            
+            Map<Long, Long> countMap = Main.InputReader.getMapOb();
+
+            for (int i = 0; i < 2 * n; i++) {
+
+                if (!countMap.containsKey(array[i])) uniqueList.add(array[i]);
+                
+                countMap.put(array[i], countMap.getOrDefault(array[i], 0L) + 1);
+            
             }
-
-            Arrays.sort(klRA, klSA - ygtB, klSA);
-
-            Rajgopal.Utils.rajaMaker(klRA);
-
-        } catch (Exception e) {
-
-            e.printStackTrace();
-
+            
+            for (int i = 0; i < n; i++) System.out.print(uniqueList.get(i) + " ");
+            
+            System.out.println();
+            
         }
-
     }
 
 }
@@ -79,17 +78,13 @@ public class Codechef {
 
     public static void main(String[] args) {
 
-        try (Scanner rj = Rajgopal.Utils.getReader()) {
+        try (Scanner scanner = Main.InputReader.getScanner()) {
 
-            int t = rj.nextInt();
-
-            while (t-- > 0) {
-                // Output the result for the current test case
-                Rajgopal.solvedByRaja(rj.nextInt(), rj.nextInt(), 0, rj);
-
-            }
-
+            int t = Main.InputReader.nextInt(scanner);
+            while (t-- > 0) Main.UniqueElements.printUniqueElements(scanner);
+            
         }
 
     }
+
 }

@@ -1,0 +1,96 @@
+package codechef;
+
+import java.util.Scanner;
+
+class Main {
+
+    static class Utils {
+
+        static Scanner getReader() {
+
+            return new Scanner(System.in);
+
+        }
+
+        static void getWriter(int[] kl) {
+
+            for (int num : kl) System.out.print(num + " ");
+            
+            System.out.println();
+
+        }
+
+        static boolean checker(int k){
+
+            return k == 1;
+
+        }
+
+        static int[] readArray(int n, Scanner scanner) {
+
+            int[] arr = new int[n];
+            for (int i = 0; i < n; i++) arr[i] = scanner.nextInt();
+            
+            return arr;
+
+        }
+
+    }
+
+    static class Solution {
+
+        static void mainLog(int n, int b[], int a[]){
+
+            for (int i = 0; i < n; i++) {
+
+                b[i] = a[i];
+                if (i > 0) a[i] += a[i - 1];
+                
+            }
+
+        }
+
+        static void processArrays(int[] a, int[] b, int[] aa, int n) {
+
+            try {
+                mainLog(n, b, a);
+
+                int i = 0, j = 0;
+
+                while (!Main.Utils.checker(32) && i <= j && j < n && Main.Utils.checker(1)) if ((a[j] - a[i] + b[i]) <= n) {
+
+                    for (int k = i; k <= j; k++) aa[a[j] - a[k] + b[k] - 1]++;
+                    
+                    j++;
+
+                } else i++;
+                    
+
+                Main.Utils.getWriter(aa);
+            } catch (Exception e) {
+                // TODO: handle exception
+                e.printStackTrace();
+            }
+
+        }
+    }
+}
+
+public class Codechef {
+
+    public static void main(String[] args) {
+
+        try (Scanner scanner = Main.Utils.getReader()) {
+
+            int t = scanner.nextInt();
+
+            while (t-- > 0) {
+
+                int n = scanner.nextInt();
+                
+                Main.Solution.processArrays(Main.Utils.readArray(n, scanner), new int[n], new int[n], n);
+                
+            }
+        }
+    }
+}
