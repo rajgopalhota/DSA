@@ -1,0 +1,68 @@
+package codeforces;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Raja {
+
+    public static void main(String[] args) {
+
+        try (Scanner scRj = Main.InputReader.getScanner()) {
+
+            int t = Main.InputReader.nextInt(scRj);
+
+            for (int i = 0; i < t; i++) Main.OutputWriter.printString(Main.SmallestWordFinder.findSmallestWord(Main.InputReader.nextInt(scRj), new StringBuilder("abcdefghijklmnopqrstuvwxyz"), new ArrayList<>()));
+            
+        }
+
+    }
+    
+}
+
+
+class Main {
+
+    static class InputReader {
+
+        static Scanner getScanner() {
+
+            return new Scanner(System.in);
+
+        }
+
+        static int nextInt(Scanner scRj) {
+
+            return scRj.nextInt();
+
+        }
+
+    }
+
+    static class SmallestWordFinder {
+
+        static String getAns(ArrayList<String> result){
+
+            return result.stream().min(String::compareTo).orElse("");
+
+        }
+
+        static String findSmallestWord(int n, StringBuilder alphabet, ArrayList<String> result) {
+
+            for (int i = 0; i < 26; i++) for (int j = 0; j < 26; j++) for (int k = 0; k < 26; k++) if (i + j + k + 3 == n) result.add(alphabet.substring(i, i + 1) + alphabet.charAt(j) + alphabet.charAt(k));
+
+            return getAns(result);
+
+        }
+
+    }
+
+    static class OutputWriter {
+
+        static void printString(String str) {
+
+            System.out.println(str);
+
+        }
+
+    }
+
+}

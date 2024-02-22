@@ -2,89 +2,121 @@ package codechef;
 
 import java.util.*;
 
-class Main {
+class Codechef {
+    public static void main(String[] args) {
 
-    static final int MOD = 998244353;
+        InputReader reader = new InputReader();
+        
 
-    static class InputReader {
+        int testCases = reader.nextInt();
 
-        static Scanner getScanner() {
+        while (testCases-- > 0) new LoopManager(reader, new OutputWriter()).processTest();
+        
+        reader.close();
 
-            return new Scanner(System.in);
+    }
+}
 
-        }
+class InputReader {
 
-        static int nextInt(Scanner scanner) {
+    private Scanner scanner;
 
-            return scanner.nextInt();
+    public InputReader() {
 
-        }
+        scanner = new Scanner(System.in);
 
-        static long nextLong(Scanner scanner) {
+    }
 
-            return scanner.nextLong();
+    public int nextInt() {
 
-        }
+        return scanner.nextInt();
 
-        static long[] readLongArray(Scanner scanner, int size) {
+    }
 
-            long[] arr = new long[size];
-            for (int i = 0; i < size; i++) {
-                arr[i] = nextLong(scanner);
-            }
-            return arr;
+    public long nextLong() {
 
-        }
+        return scanner.nextLong();
 
-        static Map<Long, Long> getMapOb(){
-            return new HashMap<>();
-        }
-        static ArrayList<Long> getListOb(){
+    }
+
+    public void close() {
+
+        scanner.close();
+
+    }
+
+}
+
+
+class OutputWriter {
+
+    public void printResult(long result) {
+
+        System.out.println(result);
+
+    }
+
+}
+
+class Logic {
+
+    static class Obj{
+        
+        static List<Long> getObj(){
+
             return new ArrayList<>();
+
         }
 
     }
 
-    static class UniqueElements {
+    public static long calculateDifference(long n) {
 
-        static void printUniqueElements(Scanner scanner) {
+        long originalN = n;
+        List<Long> binaryDigits = Obj.getObj();
 
-            List<Long> uniqueList = Main.InputReader.getListOb();
+        while (n > 0) {
 
-            long n = InputReader.nextLong(scanner);
+            binaryDigits.add(n % 2); n /= 2;
 
-            long[] array = InputReader.readLongArray(scanner, 2 * (int) n);
+        }
+
+        int j = binaryDigits.size() - 1;
+        while (j >= 0 && binaryDigits.get(j) == 1) j--;
+        
+
+        int k = 0;
+        while (k < binaryDigits.size() && binaryDigits.get(k) == 0) k++;
+
+        long ans = 0;
+
+        if (k > j) return ans;
+        
+        else {
+
+            for (int i = j; i < binaryDigits.size(); i++) ans += Math.pow(2, i);
             
-            Map<Long, Long> countMap = Main.InputReader.getMapOb();
+            return ans - originalN;
 
-            for (int i = 0; i < 2 * n; i++) {
-
-                if (!countMap.containsKey(array[i])) uniqueList.add(array[i]);
-                
-                countMap.put(array[i], countMap.getOrDefault(array[i], 0L) + 1);
-            
-            }
-            
-            for (int i = 0; i < n; i++) System.out.print(uniqueList.get(i) + " ");
-            
-            System.out.println();
-            
         }
     }
 
 }
 
-public class Codechef {
+class LoopManager {
 
-    public static void main(String[] args) {
+    private InputReader reader;
+    private OutputWriter writer;
 
-        try (Scanner scanner = Main.InputReader.getScanner()) {
+    public LoopManager(InputReader reader, OutputWriter writer) {
 
-            int t = Main.InputReader.nextInt(scanner);
-            while (t-- > 0) Main.UniqueElements.printUniqueElements(scanner);
-            
-        }
+        this.reader = reader; this.writer = writer;
 
     }
 
+    public void processTest() {
+        
+        writer.printResult(Logic.calculateDifference(reader.nextLong()));
+
+    }
 }
