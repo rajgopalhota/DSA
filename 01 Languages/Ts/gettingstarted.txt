@@ -1,0 +1,5 @@
+Install runtime for ts
+npm install -g ts-node
+
+Run code
+ts-node "c:\Users\rajgo\Documents\DSA\01 Languages\Ts\01 Intro\1.ts"
